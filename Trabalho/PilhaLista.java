@@ -27,12 +27,25 @@ public class PilhaLista<T> implements Pilha<T> {
 //Métodos
     @Override
     public T pop() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        T retorno;
+        if (vazia()) {
+            throw new ListaException("Não há nada na lista");
+        } else {
+            retorno = (topo.getInfo());
+            topo = topo.getProx();
+        }
+        return retorno;
     }
 
     @Override
     public T peek() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        T retorno;
+        if (vazia()) {
+            retorno = (T) "Lista Vazia";
+        } else {
+            retorno = (topo.getInfo());
+        }
+        return retorno;
     }
 
     @Override
@@ -42,7 +55,10 @@ public class PilhaLista<T> implements Pilha<T> {
 
     @Override
     public void libera() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (vazia()) {
+            throw new ListaException("Não há nada na lista para liberar");
+        } else {
+            topo = topo.getProx();
+        }
     }
-
 }
