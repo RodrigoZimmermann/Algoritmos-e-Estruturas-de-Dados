@@ -16,11 +16,13 @@ public class PilhaLista<T> implements Pilha<T> {
     @Override
     public void push(T valor) throws Exception {
         ElementoLista<T> novo = new ElementoLista<>();
-        if (vazia()) {
+        if (this.vazia()) {
+            topo = new ElementoLista<>();
             topo.setInfo(valor);
         } else {
             novo.setInfo(valor);
             novo.setProx(topo);
+            topo = novo;
         }
     }
 
@@ -28,8 +30,8 @@ public class PilhaLista<T> implements Pilha<T> {
     @Override
     public T pop() throws Exception {
         T retorno;
-        if (vazia()) {
-            throw new ListaException("Não há nada na lista");
+        if (this.vazia()) {
+            throw new ListaException("Não há nada na pilha");
         } else {
             retorno = (topo.getInfo());
             topo = topo.getProx();
@@ -40,8 +42,8 @@ public class PilhaLista<T> implements Pilha<T> {
     @Override
     public T peek() {
         T retorno;
-        if (vazia()) {
-            retorno = (T) "Lista Vazia";
+        if (this.vazia()) {
+            retorno = (T) "Pilha Vazia";
         } else {
             retorno = (topo.getInfo());
         }
@@ -50,13 +52,13 @@ public class PilhaLista<T> implements Pilha<T> {
 
     @Override
     public boolean vazia() {
-        return (topo.getInfo().equals(null));
+        return topo == null;
     }
 
     @Override
     public void libera() {
-        if (vazia()) {
-            throw new ListaException("Não há nada na lista para liberar");
+        if (this.vazia()) {
+            throw new ListaException("Não há nada na pilha para liberar");
         } else {
             topo = topo.getProx();
         }
