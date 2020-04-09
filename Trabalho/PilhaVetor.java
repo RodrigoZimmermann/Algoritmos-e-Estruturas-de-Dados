@@ -11,8 +11,7 @@ package Pilha;
  */
 public class PilhaVetor<T> implements Pilha<T> {
 
-    private int n;
-    private int tam;
+    private int n = 0;
     private T[] vet;
 
     //Construtores
@@ -27,27 +26,64 @@ public class PilhaVetor<T> implements Pilha<T> {
     //Métodos
     @Override
     public void push(T valor) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (n == vet.length) {
+            expande();
+        }
+        vet[n] = valor;
+        n++;
+    }
+
+    private void expande() {
+        T[] novoVetor = (T[]) new Object[vet.length * 2];  //dobrar o tamanho atual
+        for (int i = 0; i < vet.length; i++) {
+            novoVetor[i] = vet[i];
+        }
+        vet = novoVetor;
     }
 
     @Override
     public T pop() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.vazia()) {
+            throw new ListaException("Não há nada na pilha para remover");
+        } else {
+            T retorno = null;
+            for (int i = 0; i <= n; i++) {
+                retorno = vet[n];
+                vet[n] = null;
+            }
+            n--;
+            return retorno;
+        }
     }
 
     @Override
     public T peek() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.vazia()) {
+            throw new ListaException("Não há nada para pegar");
+        } else {
+            T retorno = null;
+            for (int i = 0; i <= n; i++) {
+                retorno = vet[n];
+            }
+            return retorno;
+        }
     }
 
     @Override
     public boolean vazia() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return n == 0;
     }
 
     @Override
     public void libera() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.vazia()) {
+            throw new ListaException("Não há nada na pilha para liberar");
+        } else {
+            for (int i = 0; i <= n; i++) {
+                vet[n] = null;
+            }
+            n--;
+        }
     }
 
 }
