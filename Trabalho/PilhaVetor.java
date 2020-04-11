@@ -16,11 +16,7 @@ public class PilhaVetor<T> implements Pilha<T> {
 
     //Construtores
     public PilhaVetor() {
-        vet = (T[]) new Object[100];
-    }
-
-    public PilhaVetor(int tamanho) {
-        vet = (T[]) new Object[tamanho];
+        vet = (T[]) new Object[1];
     }
 
     //Métodos
@@ -34,7 +30,7 @@ public class PilhaVetor<T> implements Pilha<T> {
     }
 
     private void expande() {
-        T[] novoVetor = (T[]) new Object[vet.length * 2];  //dobrar o tamanho atual
+        T[] novoVetor = (T[]) new Object[vet.length + 1];  //aumenta 1
         for (int i = 0; i < vet.length; i++) {
             novoVetor[i] = vet[i];
         }
@@ -46,11 +42,8 @@ public class PilhaVetor<T> implements Pilha<T> {
         if (this.vazia()) {
             throw new ListaException("Não há nada na pilha para remover");
         } else {
-            T retorno = null;
-            for (int i = 0; i <= n; i++) {
-                retorno = vet[n];
-                vet[n] = null;
-            }
+            T retorno = vet[n - 1];
+            vet[n - 1] = null;
             n--;
             return retorno;
         }
@@ -58,15 +51,13 @@ public class PilhaVetor<T> implements Pilha<T> {
 
     @Override
     public T peek() {
+        T retorno = null;
         if (this.vazia()) {
-            throw new ListaException("Não há nada para pegar");
+            retorno = (T) "Pilha Vazia";
         } else {
-            T retorno = null;
-            for (int i = 0; i <= n; i++) {
-                retorno = vet[n];
-            }
-            return retorno;
+                retorno = vet[n-1];
         }
+        return retorno;
     }
 
     @Override
@@ -79,9 +70,7 @@ public class PilhaVetor<T> implements Pilha<T> {
         if (this.vazia()) {
             throw new ListaException("Não há nada na pilha para liberar");
         } else {
-            for (int i = 0; i <= n; i++) {
-                vet[n] = null;
-            }
+            vet[n - 1] = null;
             n--;
         }
     }
