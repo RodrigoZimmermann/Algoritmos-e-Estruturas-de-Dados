@@ -52,7 +52,7 @@ public class InterfaceUsuario extends JFrame {
 		textField.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Express\u00E3o em formato P\u00F3s-fixa");
-		lblNewLabel.setBounds(36, 23, 172, 14);
+		lblNewLabel.setBounds(36, 23, 248, 14);
 		contentPane.add(lblNewLabel);
 
 		JRadioButton rdbtnPilhaVetor = new JRadioButton("Usar Pilha Vetor");
