@@ -6,8 +6,6 @@
 public class CalculadoraLista {
 
     PilhaLista<String> pilha = new PilhaLista<>();
-    private int count = 0;
-    private boolean fim = false;
     PilhaLista<String> resultadoExpressao = new PilhaLista<>();
     private int retorno1 = 1;
     private int retorno0 = 0;
