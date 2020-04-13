@@ -6,14 +6,15 @@
 public class CalculadoraVetor {
 
     PilhaVetor<String> pilha = new PilhaVetor<>();
-    private int count = 0;
-    private boolean fim = false;
+
     PilhaVetor<String> resultadoExpressao = new PilhaVetor<>();
-    private int retorno = 0;
+    private int retorno1 = 1;
+    private int retorno0 = 0;
+    private boolean retorno1True = false;
     private String sinal;
     private String segundoCalculo;
     private String primeiroCalculo;
-    private int resultado;
+    private int resultado = 0;   
 
     public void pegaValor(String entrada) throws Exception {
         for (int i = 0; i < entrada.length() - 1;) {
@@ -67,32 +68,81 @@ public class CalculadoraVetor {
 
     public String passaValor() throws Exception {
         while (!resultadoExpressao.vazia()) {
-            segundoCalculo = pilha.pop();
-            primeiroCalculo = pilha.pop();
-            switch (pilha.peek()) {
-                case "*":          
-                    sinal = pilha.pop();
-                    resultado = Integer.parseInt(primeiroCalculo) * Integer.parseInt(segundoCalculo);
-                    retorno = retorno + resultado;
+            String operador = resultadoExpressao.pop();
+            switch (operador) {
+                case "42":
+                    while (!resultadoExpressao.vazia()) {
+                        retorno1True = true;
+                        if (!resultadoExpressao.peek().equals("Pilha Vazia")) {
+                            segundoCalculo = resultadoExpressao.pop();
+                        } else {
+                            segundoCalculo = "1";
+                        }
+                        if (!resultadoExpressao.peek().equals("Pilha Vazia")) {
+                            primeiroCalculo = resultadoExpressao.pop();
+                        } else {
+                            primeiroCalculo = "1";
+                        }
+                        resultado = Integer.parseInt(primeiroCalculo) * Integer.parseInt(segundoCalculo);
+                        retorno1 = retorno1 * resultado;
+                    }
                     break;
-                case "/":
-                    sinal = pilha.pop();
-                    resultado = Integer.parseInt(primeiroCalculo) / Integer.parseInt(segundoCalculo);
-                    retorno = retorno + resultado;
+                case "47":
+                    while (!resultadoExpressao.vazia()) {
+                        retorno1True = true;
+                        if (!resultadoExpressao.peek().equals("Pilha Vazia")) {
+                            segundoCalculo = resultadoExpressao.pop();
+                        } else {
+                            segundoCalculo = "1";
+                        }
+                        if (!resultadoExpressao.peek().equals("Pilha Vazia")) {
+                            primeiroCalculo = resultadoExpressao.pop();
+                        } else {
+                            primeiroCalculo = "1";
+                        }
+                        resultado = Integer.parseInt(primeiroCalculo) / Integer.parseInt(segundoCalculo);
+                        retorno1 = resultado / retorno1;
+                    }
                     break;
-                case "-":
-                    sinal = pilha.pop();
-                    resultado = Integer.parseInt(primeiroCalculo) - Integer.parseInt(segundoCalculo);
-                    retorno = retorno + resultado;
+                case "43":
+                    while (!resultadoExpressao.vazia()) {
+                        if (!resultadoExpressao.peek().equals("Pilha Vazia")) {
+                            segundoCalculo = resultadoExpressao.pop();
+                        } else {
+                            segundoCalculo = "0";
+                        }
+                        if (!resultadoExpressao.peek().equals("Pilha Vazia")) {
+                            primeiroCalculo = resultadoExpressao.pop();
+                        } else {
+                            primeiroCalculo = "0";
+                        }
+                        resultado = Integer.parseInt(primeiroCalculo) + Integer.parseInt(segundoCalculo);
+                        retorno0 = retorno0 + resultado;
+                    }
                     break;
-                case "+":
-                    sinal = pilha.pop();
-                    resultado = Integer.parseInt(primeiroCalculo) + Integer.parseInt(segundoCalculo);
-                    retorno = retorno + resultado;
+                case "45":
+                    while (!resultadoExpressao.vazia()) {
+                        if (!resultadoExpressao.peek().equals("Pilha Vazia")) {
+                            segundoCalculo = resultadoExpressao.pop();
+                        } else {
+                            segundoCalculo = "0";
+                        }
+                        if (!resultadoExpressao.peek().equals("Pilha Vazia")) {
+                            primeiroCalculo = resultadoExpressao.pop();
+                        } else {
+                            primeiroCalculo = "0";
+                        }
+                        resultado = Integer.parseInt(primeiroCalculo) - Integer.parseInt(segundoCalculo);
+                        retorno0 = retorno0 - resultado;
+                    }
                     break;
             }
         }
-        return Integer.toString(retorno);
+        if (retorno1True) {
+            return Integer.toString(retorno1);
+        } else {
+            return Integer.toString(retorno0);
+        }
     }
 
 }
