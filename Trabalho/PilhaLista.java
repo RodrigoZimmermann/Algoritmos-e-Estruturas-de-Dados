@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Pilha;
 
 /**
  *
- * @author Rodrigo Lu√≠s Zimmermann
+ * @author Rodrigo LuÌs Zimmermann
  */
 public class PilhaLista<T> implements Pilha<T> {
 
@@ -26,12 +20,12 @@ public class PilhaLista<T> implements Pilha<T> {
         }
     }
 
-//M√©todos
+//MÈtodos
     @Override
     public T pop() throws Exception {
         T retorno;
         if (this.vazia()) {
-            throw new ListaException("N√£o h√° nada na pilha");
+            throw new ListaException("N„o h· nada na pilha");
         } else {
             retorno = (topo.getInfo());
             topo = topo.getProx();
@@ -58,7 +52,7 @@ public class PilhaLista<T> implements Pilha<T> {
     @Override
     public void libera() {
         if (this.vazia()) {
-            throw new ListaException("N√£o h√° nada na pilha para liberar");
+            throw new ListaException("N„o h· nada na pilha para liberar");
         } else {
             topo = topo.getProx();
         }
