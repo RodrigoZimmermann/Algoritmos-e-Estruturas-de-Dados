@@ -62,41 +62,112 @@ public class InterfaceUsuario extends JFrame {
 		JRadioButton rdbtnPilhaLista = new JRadioButton("Usar Pilha Lista");
 		rdbtnPilhaLista.setBounds(186, 140, 166, 23);
 		contentPane.add(rdbtnPilhaLista);
-		
+
 		JLabel resultado = new JLabel("Resultado");
 		resultado.setBounds(36, 166, 89, 14);
 		contentPane.add(resultado);
 
 		JButton btnNewButton = new JButton("Calcular");
 		btnNewButton.addActionListener(new ActionListener() {
+			boolean validado = true;
+
 			public void actionPerformed(ActionEvent arg0) {
- 	
-				if (rdbtnPilhaVetor.isSelected() && rdbtnPilhaLista.isSelected()) {	
-					JOptionPane.showMessageDialog(null, "Escolha somente uma tipo de pilha.Obrigado!", "Informação",JOptionPane.WARNING_MESSAGE);
-					
+
+				if (rdbtnPilhaVetor.isSelected() && rdbtnPilhaLista.isSelected()) {
+					JOptionPane.showMessageDialog(null, "Escolha somente uma tipo de pilha.Obrigado!", "Informação",
+							JOptionPane.WARNING_MESSAGE);
+
 				} else if (!rdbtnPilhaVetor.isSelected() && !rdbtnPilhaLista.isSelected()) {
-					JOptionPane.showMessageDialog(null, "Escolha uma pilha.Obrigado!", "Informação",JOptionPane.WARNING_MESSAGE);
-				}else if (rdbtnPilhaVetor.isCursorSet()) {						
-					
-						CalculadoraVetor calculadora = new CalculadoraVetor();					 
-							try {
-								calculadora.pegaValor(textField.getText());
-								resultado.setText(calculadora.passaValor());
-								JOptionPane.showMessageDialog(null,calculadora.passaValor());
-							} catch (Exception e) {
-								JOptionPane.showMessageDialog(null, "Digitação Incorreta", "Informação",JOptionPane.WARNING_MESSAGE);
-							}					
-					        
+					JOptionPane.showMessageDialog(null, "Escolha uma pilha.Obrigado!", "Informação",
+							JOptionPane.WARNING_MESSAGE);
+				} else if (rdbtnPilhaVetor.isCursorSet()) {
+					validation(textField.getText());
+					if (validado) {
+						CalculadoraVetor calculadora = new CalculadoraVetor();
+						try {
+							calculadora.pegaValor(textField.getText());
+							resultado.setText(calculadora.passaValor());
+							JOptionPane.showMessageDialog(null, calculadora.passaValor());
+						} catch (Exception e) {
+							JOptionPane.showMessageDialog(null, "Digitação Incorreta", "Informação",
+									JOptionPane.WARNING_MESSAGE);
+						}
+					}
+
 				} else {
-					CalculadoraLista calculadora = new CalculadoraLista();					 
-					try {
-						calculadora.pegaValor(textField.getText());
-						resultado.setText(calculadora.passaValor());
-						JOptionPane.showMessageDialog(null,calculadora.passaValor());
-					} catch (Exception e) {
-						JOptionPane.showMessageDialog(null, "Digitação Incorreta", "Informação",JOptionPane.WARNING_MESSAGE);
-					}				
+					validation(textField.getText());
+					if (validado) {
+						CalculadoraLista calculadora = new CalculadoraLista();
+						try {
+							calculadora.pegaValor(textField.getText());
+							resultado.setText(calculadora.passaValor());
+							JOptionPane.showMessageDialog(null, calculadora.passaValor());
+						} catch (Exception e) {
+							JOptionPane.showMessageDialog(null, "Digitação Incorreta", "Informação",
+									JOptionPane.WARNING_MESSAGE);
+						}
+					}
+				}
 			}
+
+			private void validation(String text) {
+				String validacao = text;
+				int count = 0;
+				boolean espaco = false;
+				boolean number = false;
+				int countNumber = 0;
+				for (int i = 0; i < validacao.length() - 2; i++) {
+					while (validacao.charAt(i) == ' ') {
+						i++;
+						count++;
+						if (count == 2) {
+							validado = false;
+							JOptionPane.showMessageDialog(null, "Digitação Incorreta", "Informação",
+									JOptionPane.WARNING_MESSAGE);
+							return;
+						}
+						espaco = true;
+					}
+					if (espaco == true) {
+						count--;
+					}
+					espaco = false;
+					
+					while (Character.toString(validacao.charAt(i)).matches("[0-9]")) {
+						i++;
+						countNumber++;
+						if (countNumber == 2) {
+							validado = false;
+							JOptionPane.showMessageDialog(null, "Digitação Incorreta", "Informação",
+									JOptionPane.WARNING_MESSAGE);
+							return;
+						}
+						number = true;
+					}
+					if (number == true) {
+						countNumber--;
+					}
+					number = false;
+					if (Character.toString(validacao.charAt(i)).matches("[A-Z]")
+							|| Character.toString(validacao.charAt(i)).matches("[a-z]")) {
+						validado = false;
+						JOptionPane.showMessageDialog(null, "Digitação Incorreta", "Informação",
+								JOptionPane.WARNING_MESSAGE);
+						return;
+					}
+					if (validacao.startsWith(" ")) {
+						validado = false;
+						JOptionPane.showMessageDialog(null, "Digitação Incorreta", "Informação",
+								JOptionPane.WARNING_MESSAGE);
+						return;
+					}
+					if (validacao.endsWith(" ")) {
+						validado = false;
+						JOptionPane.showMessageDialog(null, "Digitação Incorreta", "Informação",
+								JOptionPane.WARNING_MESSAGE);
+						return;
+					}
+				}
 			}
 		});
 		btnNewButton.setBounds(36, 107, 89, 23);
