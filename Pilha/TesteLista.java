@@ -1,0 +1,30 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Pilha;
+
+/**
+ *
+ * @author Rodrigo Luís Zimmermann
+ */
+public class TesteLista {
+
+    public static void main(String[] args) throws Exception {
+        PilhaLista<String> pilha = new PilhaLista<>();
+        System.out.println("Esperado Pilha Vazia = " + pilha.peek());
+        pilha.push("A");
+        pilha.push("B");
+        System.out.println("Esperado B = " + pilha.peek());
+        pilha.push("C");
+        System.out.println("Esperado C = " + pilha.peek());
+        System.out.println("Esperado C = " + pilha.pop());
+        System.out.println("Esperado B = " + pilha.peek());
+        pilha.libera();
+        System.out.println("Esperado A = " + pilha.peek());
+        System.out.println("Esperado false " + pilha.vazia());
+        System.out.println("Esperado A = " + pilha.pop());
+        System.out.println("Esperado true " + pilha.vazia());
+    }
+}
