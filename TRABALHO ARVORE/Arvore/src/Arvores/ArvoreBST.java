@@ -1,17 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Arvore;
+package arvores;
 
-/**
- *
- * @author Rodrigo Lu√≠s Zimmermann
- */
 public class ArvoreBST<T extends Comparable<T>> extends ArvoreBinariaAbstract<T> {
 
-    
 	public void inserir(T info) {
 		if (this.vazia()) {
 			this.setRaiz(new NoArvoreBST<T>(info));
@@ -36,13 +26,13 @@ public class ArvoreBST<T extends Comparable<T>> extends ArvoreBinariaAbstract<T>
 
 	private void retirar(NoArvoreBST<T> aRetirar) {
 		if (aRetirar == this.getRaiz()) {
-			if (aRetirar.getEsq() == null && aRetirar.getDir() == null) { // √© n√≥ folha
+			if (aRetirar.getEsq() == null && aRetirar.getDir() == null) { // È nÛ folha
 				this.setRaiz(null);
 			} else {
 				if (aRetirar.getEsq() == null || aRetirar.getDir() == null) { // tem 1 filho
-					if (aRetirar.getEsq() != null) { // filho est√° √† esquerda
+					if (aRetirar.getEsq() != null) { // filho est· ‡ esquerda
 						this.setRaiz(aRetirar.getEsq());
-					} else { // filho est√° √† direita
+					} else { // filho est· ‡ direita
 						this.setRaiz(aRetirar.getDir());
 					}
 				} else {// tem 2 filhos
@@ -52,9 +42,9 @@ public class ArvoreBST<T extends Comparable<T>> extends ArvoreBinariaAbstract<T>
 					this.getRaiz().setInfo(infoSucessor);
 				}
 			}
-		} else { // aRetirar n√£o √© raiz
+		} else { // aRetirar n„o È raiz
 			NoArvoreBST<T> pai = this.buscarPai(aRetirar);
-			if (aRetirar.getEsq() == null && aRetirar.getDir() == null) { // √© n√≥ folha
+			if (aRetirar.getEsq() == null && aRetirar.getDir() == null) { // È nÛ folha
 				if (pai.getDir() == aRetirar) {
 					pai.setDir(null);
 				} else {
@@ -63,9 +53,9 @@ public class ArvoreBST<T extends Comparable<T>> extends ArvoreBinariaAbstract<T>
 			} else {
 				if (aRetirar.getEsq() == null || aRetirar.getDir() == null) { // tem 1 filho
 					NoArvoreBST<T> filho;
-					if (aRetirar.getEsq() != null) { // filho est√° √† esquerda
+					if (aRetirar.getEsq() != null) { // filho est· ‡ esquerda
 						filho = (NoArvoreBST<T>) aRetirar.getEsq();
-					} else { // filho est√° √† direita
+					} else { // filho est· ‡ direita
 						filho = (NoArvoreBST<T>) aRetirar.getDir();
 					}
 					if (pai.getDir() == aRetirar) {
@@ -92,9 +82,9 @@ public class ArvoreBST<T extends Comparable<T>> extends ArvoreBinariaAbstract<T>
 			if (pai.getDir() == filho || pai.getEsq() == filho) {
 				return pai;
 			}
-			if (pai.getInfo().compareTo(filho.getInfo()) > 0) { // est√° √† esquerda
+			if (pai.getInfo().compareTo(filho.getInfo()) > 0) { // est· ‡ esquerda
 				pai = (NoArvoreBST<T>) pai.getEsq();
-			} else { // est√° √† direita
+			} else { // est· ‡ direita
 				pai = (NoArvoreBST<T>) pai.getDir();
 			}
 		}

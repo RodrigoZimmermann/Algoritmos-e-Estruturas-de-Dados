@@ -1,21 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Arvore;
+package arvores;
 
-/**
- *
- * @author Rodrigo Luís Zimmermann
- */
 public class MainArvoreNAria {
-	public static void main(String args[]) {
-		NoArvore<Integer> n9 = new NoArvore<Integer>(9);
+
+    public static void main(String args[]) {
+
+      	NoArvore<Integer> n9 = new NoArvore<Integer>(9);
 		NoArvore<Integer> n10 = new NoArvore<Integer>(10);
 		NoArvore<Integer> n4 = new NoArvore<Integer>(4);
+                NoArvore<Integer> n11 = new NoArvore<Integer>(11);
+		NoArvore<Integer> n12 = new NoArvore<Integer>(12);
 		n4.inserirFilho(n10);
 		n4.inserirFilho(n9);
+                n9.inserirFilho(n11);
+		n11.inserirFilho(n12);
 
 		NoArvore<Integer> n8 = new NoArvore<Integer>(8);
 		NoArvore<Integer> n3 = new NoArvore<Integer>(3);
@@ -36,12 +33,12 @@ public class MainArvoreNAria {
 		n1.inserirFilho(n2);
 
 		Arvore<Integer> a = new Arvore<>();
-		a.setRaiz(n1);
 
-		System.out.println(a.toString());
-		
-		System.out.println(a.pertence(8).getInfo());
-		System.out.println(a.pertence(20));
-		
-	}
+		a.setRaiz(n1);
+        
+        //System.out.println(a.getAltura(8));
+         System.out.println(a.getNivel(2));
+        System.out.println(a.getAltura());
+       // System.out.println(a.toString());
+    }
 }

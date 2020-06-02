@@ -1,17 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Arvore;
+package arvores;
 
-/**
- *
- * @author Rodrigo Lu√≠s Zimmermann
- * @param <T>
- */
 public class NoArvoreBinaria<T> {
-// Atributos
+	// Atributos
 	private T info;
 	private NoArvoreBinaria<T> esq;
 	private NoArvoreBinaria<T> dir;
@@ -74,14 +64,14 @@ public class NoArvoreBinaria<T> {
 	public String imprimePre() {
 		// trata a raiz
 		String str = "<" + this.info;
-		// vai √† esquerda
+		// vai ‡ esquerda
 		if (esq != null) {
 			str += esq.imprimePre();
 		}
 		else {
 			str += "<>";
 		}
-		// vai √† direita
+		// vai ‡ direita
 		if (dir != null) {
 			str += dir.imprimePre();
 		}
@@ -93,19 +83,18 @@ public class NoArvoreBinaria<T> {
 	
 	public String imprimeCentral() {
 		String str = "";
-		// vai √† esquerda
+		// vai ‡ esquerda
 		if (esq != null) {
 			str += esq.imprimeCentral();
 		}
 
 		// trata a raiz
 		str += " "+this.info.toString();
-		// vai √† direita
+		// vai ‡ direita
 		if (dir != null) {
 			str += dir.imprimeCentral();
 		}
 
 		return str;
 	}
-
 }

@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Arvore;
+package arvores;
 
-/**
- *
- * @author Rodrigo Luís Zimmermann
- */
 public abstract class ArvoreBinariaAbstract<T> {
     //Atributos
     private NoArvoreBinaria<T> raiz = null;
@@ -49,14 +40,4 @@ public abstract class ArvoreBinariaAbstract<T> {
     		return raiz.imprimePre();
     	}
     }
-    
-     public String toStringOrdered() {
-    	if (this.vazia()) {
-    		return "";
-    	}
-    	else {
-    		return raiz.imprimeCentral();
-    	}
-    }
-    
 }
